@@ -1,0 +1,90 @@
+<button class="btn btn-success mt-5" (click)="toggleImgs()">
+    Show/Hide Images
+  </button>
+  <!-- <input type="text" class="form-control mt-4" [value]="name" > -->
+  <!-- <input type="text" class="form-control mt-4" [(ngModel)]="name"> -->
+  <h2>{{ name }}</h2>
+  
+  <h2>{{birthDay | date:'long'}}</h2>
+  <div class="row">
+    <!-- filter products -->
+    <!-- <input type="text" class="form-control mt-4" [(ngModel)]="listFilterdValue" /> -->
+    <!-- list products -->
+    @for(item of productListFilter; track item.id){
+    <div class="col-sm-3 mb-4 mt-4">
+      @if(showImgs){
+      <img [src]="item.PrdimgURL" class="img-fluid" />
+      }
+  
+      <h3>{{ item.name | uppercase }}</h3>
+      <!-- <h4 [class.bg-warning]="item.price > 5000"> -->
+      <!-- property binding -->
+      <!-- <h4
+        [class.bg-warning]="item.price > 5000"
+        [class.text-danger]="item.quantity < 5"
+      > -->
+      <!-- {{ item.price }}
+      </h4> -->
+      <!-- <h2
+        [style.color]="item.quantity < 5 ? 'green' : 'blue'"
+        [style.backgroundColor]="item.quantity < 5 ? 'red' : 'pink'"
+      >
+        {{ item.quantity }}
+      </h2> -->
+  
+      <!-- attribute dirrective -->
+  
+      <!-- <h4 [ngClass]="{'text-danger':item.price > 5000,'bg-warning':item.price < 5000}">
+        {{ item.price }}
+      </h4> -->
+      <!-- <h4
+        [ngStyle]="{
+          color: item.price > 5000 ? 'red' : 'green',
+          backgroundColor: item.price < 5000 ? 'blue' : 'pink'
+        }"
+      >
+        {{ item.price }}
+      </h4> -->
+  
+       <!-- <h4 [appHighlight]="myhighlightedColor" defaultColor="pink"> price: {{item.price}}</h4> -->
+       <!-- <h4 appHighlight> price: {{item.price}}</h4> -->
+       <!-- <h4 > price: {{item.price | currency:'EUR':'code'}} </h4> -->
+       <h4 class="text-decoration-line-through"> price: {{item.price}} </h4>
+       <h4 > price: {{item.price | discount:50 | currency:'EUR'}} </h4>
+  
+  
+  
+      @if(item.quantity > 5){
+      <h2>
+        {{ item.quantity }}
+      </h2>
+      } @else if(item.quantity <5 && item.quantity >0){
+      <h2>remain only {{ item.quantity }} items</h2>
+      } @else{
+      <h2 class="text-danger">Out of the Stock</h2>
+      }
+  
+      <!-- <h2 
+      [style.color]="item.quantity < 5 ? 'green' : 'blue'"
+      >
+        {{ item.quantity }}
+      </h2> -->
+  
+      <!-- categoryID==1 =>table,categoryID== 2 =>chair,categoryID==3 =>tv unit
+      -->
+      <div>
+        @switch(item.categoryID){ @case (1){ Table } @case (2){ chair } @default {
+        TV Unit } }
+      </div>
+      <!-- <button class="btn btn-primary" disabled={{val}}>
+        Add to Cart <i class="fa-solid fa-cart-shopping"></i>
+      </button> -->
+      <button class="btn btn-primary" [disabled]="item.quantity == 0" (click)="addToCart(item)">
+        Add to Cart <i class="fa-solid fa-cart-shopping"></i>
+      </button>
+    </div>
+    } @empty{
+    <h2>No Products Founded!</h2>
+    }
+  </div>
+  
