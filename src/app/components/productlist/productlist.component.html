@@ -11,7 +11,7 @@
     <!-- <input type="text" class="form-control mt-4" [(ngModel)]="listFilterdValue" /> -->
     <!-- list products -->
     @for(item of productListFilter; track item.id){
-    <div class="col-sm-3 mb-4 mt-4">
+    <div class="col-sm-3 mb-4 mt-4" [routerLink]="['/proddet',item.id]" routerLinkActive="router-link-active" >
       @if(showImgs){
       <img [src]="item.PrdimgURL" class="img-fluid" />
       }
@@ -47,6 +47,7 @@
       </h4> -->
   
        <!-- <h4 [appHighlight]="myhighlightedColor" defaultColor="pink"> price: {{item.price}}</h4> -->
+       <h4 [appHighlight]="borderval" myBorder="2px dashed blue" > price: {{item.price}}</h4>
        <!-- <h4 appHighlight> price: {{item.price}}</h4> -->
        <!-- <h4 > price: {{item.price | currency:'EUR':'code'}} </h4> -->
        <h4 class="text-decoration-line-through"> price: {{item.price}} </h4>

@@ -10,10 +10,13 @@ export class TexthighlightDirective {
   appHighlight=''
   @Input() 
   defaultColor=''
+  @Input() 
+  myBorder=''
+ 
 // document.getElement
   constructor(private domEle:ElementRef) {}
    @HostListener('mouseenter') onMouseEnter(){
-     this.changeHeighlight(this.appHighlight ||this.defaultColor|| 'yellow')
+     this.changeHeighlight(this.appHighlight ||this.myBorder|| 'yellow')
    }
    @HostListener('mouseleave') onMouseLeave(){
      this.changeHeighlight('')
@@ -21,7 +24,7 @@ export class TexthighlightDirective {
 
 
   private changeHeighlight(color:string){
-    this.domEle.nativeElement.style.backgroundColor=color;
+    this.domEle.nativeElement.style.border=color;
   }
 
 }
