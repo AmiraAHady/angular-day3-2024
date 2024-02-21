@@ -1,0 +1,36 @@
+{
+  "products": [
+    {
+      "id": "123",
+      "name": "prod1"
+    },
+    {
+      "id": "345",
+      "name": "prod2"
+    },
+    {
+      "id": "678",
+      "name": "prod3"
+    }
+  ],
+  "users": [
+    {
+      "id": "377a",
+      "email": "amira@gmail.com",
+      "firstName": "amira",
+      "lastName": "Abdelhady"
+    },
+    {
+      "id": "a78f",
+      "firstName": "ramy",
+      "lastName": "mahmoud",
+      "email": "ramy@gmail.com"
+    },
+    {
+      "id": "d38f",
+      "firstName": "Amira ",
+      "lastName": "Abdelhady",
+      "email": "amiraabdelhady885@gmail.com"
+    }
+  ]
+}

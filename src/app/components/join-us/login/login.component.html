@@ -1,0 +1,59 @@
+  
+
+
+<div class="container">
+    <div class="card mb-4">
+      <div class="card-header">Login Form </div>
+      <div class="card-body">
+        <form>
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" for="emailId">Email</label>
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="emailId"
+                type="email"
+                placeholder="Email (required)"
+                required
+                email
+                name="email"
+              />
+  
+              <span class="invalid-feedback"> </span>
+            </div>
+          </div>
+          <div class="form-group row mb-2">
+            <label for="Password" class="col-md-2 col-form-label"
+              >Password</label
+            >
+            <div class="col-md-8">
+              <input
+                type="text"
+                name="Password"
+                class="form-control"
+                id="Password"
+                placeholder="Password (required)"
+                required
+                minlength="3"
+              />
+  
+              <span class="invalid-feedback"> </span>
+            </div>
+          </div>
+  
+          <button
+            type="submit"
+            class="btn btn-success"
+           
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+    <span>Dont has Account?</span>
+     <a class="btn btn-success btn-sm" routerLink="/join/signup" >SignUp</a>
+     <!-- <a class="btn btn-success btn-sm" >SignUp</a> -->
+  </div>
+  
+  

@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Iproduct } from '../models/iproduct';
 
 @Injectable({
@@ -97,10 +99,13 @@ export class ProductsService {
       Material: 'wood',
     },
   ];
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   getAllProduct(): Iproduct[] {
     return this.products;
+  }
+  getAllProductbyMyApi(): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:3000/products`);
   }
   getProductById(prodId: number): Iproduct | undefined {
     return this.products.find((product) => product.id == prodId);

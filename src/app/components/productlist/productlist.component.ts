@@ -41,6 +41,12 @@ export class ProductlistComponent implements OnInit {
   ngOnInit(): void {
     // console.log('Inside ngOnInit');
    this.products=this.prodServi.getAllProduct()
+   this.prodServi.getAllProductbyMyApi().subscribe({
+     next:(data)=>{
+       console.log(data);
+       
+     }
+   })
     this.productListFilter = this.products;
   }
 
