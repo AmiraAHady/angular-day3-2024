@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { TexthighlightDirective } from '../../directives/texthighlight.directive';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,6 +10,26 @@ import { RouterModule } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  userLog!:boolean;
+  constructor(private authServ:AuthService,private router:Router){
+  }
 
+  ngOnInit(): void {
+      this.authServ.getUserState().subscribe({
+        next:(state)=>{
+          console.log(state);
+          this.userLog=state
+        }
+      })
+  }
+
+  changeUserState(){
+    if(this.userLog){
+      this.authServ.logout()
+    }
+    if(!this.userLog){
+     this.router.navigate(['/join/signup'])
+    }
+  }
 }

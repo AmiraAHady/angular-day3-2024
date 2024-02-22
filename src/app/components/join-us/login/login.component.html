@@ -1,59 +1,107 @@
-  
-
-
 <div class="container">
-    <div class="card mb-4">
-      <div class="card-header">Login Form </div>
-      <div class="card-body">
-        <form>
-          <div class="form-group row mb-2">
-            <label class="col-md-2 col-form-label" for="emailId">Email</label>
-            <div class="col-md-8">
-              <input
-                class="form-control"
-                id="emailId"
-                type="email"
-                placeholder="Email (required)"
-                required
-                email
-                name="email"
-              />
-  
-              <span class="invalid-feedback"> </span>
-            </div>
-          </div>
-          <div class="form-group row mb-2">
-            <label for="Password" class="col-md-2 col-form-label"
-              >Password</label
-            >
-            <div class="col-md-8">
-              <input
-                type="text"
-                name="Password"
-                class="form-control"
-                id="Password"
-                placeholder="Password (required)"
-                required
-                minlength="3"
-              />
-  
-              <span class="invalid-feedback"> </span>
-            </div>
-          </div>
-  
-          <button
-            type="submit"
-            class="btn btn-success"
-           
+  <div class="card mb-4">
+    <div class="card-header">Reactive form</div>
+    <div class="card-body">
+      <form [formGroup]="formgroup1">
+        <div class="form-group row mb-2">
+          <label for="firstName" class="col-md-2 col-form-label"
+            >First Name</label
           >
-            Submit
+          <div class="col-md-8">
+            <input
+              type="text"
+              name="firstName"
+              class="form-control"
+              id="firstName"
+              formControlName="firstName"
+              placeholder="First Name (required)"
+              required
+              minlength="3"
+              [ngClass]="{
+                'is-invalid':
+                  (firstName?.touched || firstName?.dirty) && firstName?.invalid
+              }"
+            />
+
+            <span class="invalid-feedback">
+              @if(firstName?.errors?.['required']){
+              <span>First Name is required</span>
+              } @if(firstName?.errors?.['minlength']){
+              <span>First Name at least 3 chars</span>
+              }
+            </span>
+          </div>
+        </div>
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label" for="lastNameId"
+            >Last Name</label
+          >
+          <div class="col-md-8">
+            <input
+              class="form-control"
+              id="lastNameId"
+              type="text"
+              formControlName="lastName"
+              placeholder="Last Name (required)"
+              required
+              pattern="[A-Za-z]{5,}"
+              name="lastName"
+            />
+            <span class="invalid-feedback"> </span>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label" for="emailId">Email</label>
+          <div class="col-md-8">
+            <input
+              class="form-control"
+              id="emailId"
+              type="email"
+              formControlName="email"
+              placeholder="Email (required)"
+              required
+              email
+              name="email"
+            />
+
+            <span class="invalid-feedback"> </span>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label">Address</label>
+          <div formArrayName="address">
+            @for(control of address.controls;track $index){
+            <div [formGroupName]="$index">
+              city Name:
+              <input type="text" formControlName="city" />
+              street:
+              <input type="text" formControlName="street" />
+              <button class="btn btn-danger" (click)="removeAddressInput($index)">
+                Remove
+              </button>
+            </div>
+            
+            }
+          </div>
+          <button class="btn btn-primary" (click)="addAddress()">
+            add address
           </button>
-        </form>
-      </div>
+          <!-- <div class="col-md-8">
+            city Name:
+            <input type="text">
+            street:
+            <input type="text">
+          </div> -->
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
     </div>
-    <span>Dont has Account?</span>
-     <a class="btn btn-success btn-sm" routerLink="/join/signup" >SignUp</a>
-     <!-- <a class="btn btn-success btn-sm" >SignUp</a> -->
   </div>
-  
-  
+
+  <!-- <p>{{formgroup1.value | json}}</p> -->
+  <p>{{address.value | json}}</p>
+  <!-- <p>{{ formgroup1.get('firstName')}}</p> -->
+</div>

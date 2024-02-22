@@ -9,6 +9,7 @@ import { MoviesComponent } from './components/movies/movies.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ProductlistComponent } from './components/productlist/productlist.component';
+import { userGuard } from './Guards/user-guard.guard';
 
 export const routes: Routes = [
   // { path: '', component: HomeComponent },
@@ -23,7 +24,7 @@ export const routes: Routes = [
   // Nested Routes
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent ,title:'Home page'},
-  { path: 'products', component: ProductlistComponent },
+  { path: 'products', component: ProductlistComponent ,canActivate:[userGuard]},
   { path: 'proddet/:id', component: ProductDetailsComponent },
   { path: 'moviedetails/:mid', component: MoviedetailsComponent },
   { path: 'movies', component: MoviesComponent },
